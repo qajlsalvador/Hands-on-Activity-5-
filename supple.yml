@@ -1,0 +1,17 @@
+---
+- hosts: Server
+  become: true
+  tasks:
+
+  - name: update repository index
+    package:
+      update_cache: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: install apache2 package
+    package:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+
